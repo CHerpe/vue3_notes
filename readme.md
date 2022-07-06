@@ -15,7 +15,7 @@ Composition = nouveauté de vue 3
 - - Cette directive est si utilisée qu'elle a une forme simpliée : `:class="variable"`
 - - On peut lui passer une fonction qui retourne une valeur aussi
 
-### gestion d'évènements
+### Gestion d'évènements
 
 - **v-on** : ex: `v-on:click="myfunction`
 - - Comme le v-bind, cette directive étant très utilisée elle a une forme abbrégée : `@click="myfunction`
