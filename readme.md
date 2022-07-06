@@ -38,6 +38,12 @@ Quelques exemples utiles :
 - **Fonction watch()** : Répond au manque du computed : effets secondaires et async. Surveille une variable puis execute le code à chaque changement de cette variable. Utile pour créer des effets secondaires, par ex : on augmente un quantité et on watch les modifications sur cette quantité, et à chaque modif on incrémente un compteur du nb de changements ayant eu lieu.
 - **Fonction watchEffect()** : Le watchEffect est similaire au watch, cependant, le watch ne se joue que si un changement a lieu alors que le watchEffect va s'invoquer une première fois directement puis quand il y a des changements.  
 
+## Style
+
+On utilise **scoped** dans la balise style d'un composant si on souhaite isoler le css de la balise du reste de l'application.  
+Si on ne met rien le style sera global.  
+
+ 
 ## Lexique
 
 - **SPA** : Single page application 
