@@ -36,7 +36,7 @@ Quelques exemples utiles :
 - - Impossible de faire du asynchrone et ne doit pas impacter d'autres élément que celui qu'il modifie directement (pas d'effets de bord)
 - **v-model** : Permet le lier un input à la valeur d'une variable (dans les 2 sens !)
 - **Fonction watch()** : Répond au manque du computed : effets secondaires et async. Surveille une variable puis execute le code à chaque changement de cette variable. Utile pour créer des effets secondaires, par ex : on augmente un quantité et on watch les modifications sur cette quantité, et à chaque modif on incrémente un compteur du nb de changements ayant eu lieu.
-- **Fonction watchEffect()** : Le watchEffect est similaire au watch, cependant, le watch ne se joue que si un changement a lieu alors que le watchEffect va s'invoquer une première fois directement puis quand il y a des changements. 
+- **Fonction watchEffect()** : Le watchEffect est similaire au watch, cependant, le watch ne se joue que si un changement a lieu alors que le watchEffect va s'invoquer une première fois directement puis quand il y a des changements.  
 
 ## Lexique
 
