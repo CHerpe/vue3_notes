@@ -21,14 +21,26 @@ Composition = nouveauté de vue 3
 - - Comme le v-bind, cette directive étant très utilisée elle a une forme abbrégée : `@click="myfunction`
 
 On peut ajouter des **modifiers** (par ex pour empècher la propagation aux parents ou un rafraichissement au submit).  
-Quelques exemples utiles :
-- - **Stop** : `@click.stop="myfunction"` 
-- - **Prevent** : `@submit.prevent="myfunction"`
-- - **Escape** : `@keyup.escape="myfunction"`
-- - **Enter** : `@keyup.enter="myfunction"`
+Quelques exemples utiles :  
+- **Stop** : `@click.stop="myfunction"` 
+- **Prevent** : `@submit.prevent="myfunction"`
+- **Escape** : `@keyup.escape="myfunction"`
+- **Enter** : `@keyup.enter="myfunction"`
+
+## Réactivité
+
+- **Proxy** : Pour rendre le DOM réactif, Vue utilise **Proxy**, un élément JS. Cette propriété permet de créer une copie de l'élément original et de lui ajouter un getter et un setter. C'est la base de la réactivité
+- **Fonction reactive()** : On met les propriétés dans un objet dans la fonction reactive (qu'on peut appeler state). En utilisant la fonctionnalité proxy, cette fonction les rendra réactives. Cependant, cela ne fonctionne que pour les objet et pas pour les variables de type primitive.
+- **Fonction ref()** : Comme reactive mais fonctionne aussi pour primitives. En revanche il faut toujours manipuler la clé "value".
+- **Fonction computed()** :  L'avantage par rapport aux méthode précédente est que dans le cas où il y a plusieurs variables qui peuvent changer, lorsqu'une change, Vue ne va pas tout recalculer dans le DOM. En effet ici Vue stockera en cache les valeurs et en cas de changement ne recalculera que ce qui a beosin de l'être. => +++ performance. 
+- - Impossible de faire du asynchrone et ne doit pas impacter d'autres élément que celui qu'il modifie directement (pas d'effets de bord)
+- **v-model** : Permet le lier un input à la valeur d'une variable (dans les 2 sens !)
+- **Fonction watch()** : Répond au manque du computed : effets secondaires et async. Surveille une variable puis execute le code à chaque changement de cette variable. Utile pour créer des effets secondaires, par ex : on augmente un quantité et on watch les modifications sur cette quantité, et à chaque modif on incrémente un compteur du nb de changements ayant eu lieu.
+- **Fonction watchEffect()** : Le watchEffect est similaire au watch, cependant, le watch ne se joue que si un changement a lieu alors que le watchEffect va s'invoquer une première fois directement puis quand il y a des changements. 
 
 ## Lexique
 
 - **SPA** : Single page application 
 - **SFC** : Single file component
 - **Directives** : v-if, v-bind, ect... = options que vue reconnait
+- **Tick** : action de rafraichissement du DOM par Vue
