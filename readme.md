@@ -43,6 +43,20 @@ Quelques exemples utiles :
 On utilise **scoped** dans la balise style d'un composant si on souhaite isoler le css de la balise du reste de l'application.  
 Si on ne met rien le style sera global.  
 
+## Les directives structurelles
+
+Ce sont les directives qui vont avoir un effet sur ce qui s'affiche ou non dans le DOM
+
+- **v-if** / **v-else** / **v-else-if** : affiche selon des conditions
+- **v-show** : si faux ajoute un display none plutot que de l'enlever du DOM - peut être interessant pour quelque chose qui change souvent car moins gourmand que le v-if ou pour garder la ref à un élement du DOM
+- **v-pre** : permet de dire à Vue de ne pas interpréter le code de la balise - par pour afficher du code sur le front
+- **v-for** : `v-for="x in y"`
+- - index : `v-for="(x, index)  in y"`
+- - key : permet d'afficher la clé de la valeur dans le cas d'une iteration sur un objet `v-for="(x, key, index)  in y"`
+- - On peut itérer sur un int aussi, auquel cas ça fera une boucle de int elements
+- - On peut préciser une clé :key sur chaque itération pour qu'en cas de changement, le nombre d'opération faite par vue soit réduit. D'autant plus important pour une grande liste
+- **v-once** : permet de binder un élément une seule fois - quand une autre valeur change, Vue n'écoutera plus cette valuer, ce qui peut être intéressant pour les énorme pages
+- **v-memo** : `v-memo="[variable]"` ici Vue ne réevaluera les varible de la div que si la varible de v-memo ne change.
  
 ## Lexique
 
