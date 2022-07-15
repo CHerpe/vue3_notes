@@ -58,6 +58,35 @@ Ce sont les directives qui vont avoir un effet sur ce qui s'affiche ou non dans 
 - **v-once** : permet de binder un élément une seule fois - quand une autre valeur change, Vue n'écoutera plus cette valuer, ce qui peut être intéressant pour les énorme pages
 - **v-memo** : `v-memo="[variable]"` ici Vue ne réevaluera les varible de la div que si la varible de v-memo ne change.
  
+## Les composants
+
+### Composants locaux et globaux
+
+=> Dans les composants `import Component from ./...` = appel local   
+=> Dans main.ts `app.component('Component', Component)` = global - disponible partout ensuite  
+
+On utilise principalement les imports locaux - en global on perd la fonctionnalité tree checking (compile uniquement ce qui est utile)
+
+### Les props
+
+On peut passer des infos du parent à l'enfant en utilisant  
+- Sur le parent : `Component :name="machin"` - On utilise le : (binding) car sinon tout ce qu'on passe sera interprété comme une string  
+- Sur l'enfant : `const props = defineProps({machin: {type: String, required: true, defaut: "chise"}})` - On ne doit pas modifier la prop sur l'enfant sinon Vue perdu 
+**Verifications**
+- Pour chaque propriété on peut ajouter un validator = une fonction dans la déclaration de la prop de defineProps qui check ce qu'on reçoit.
+- Pour valider via typescript, on met `defineProps<{prix?: number, name: string}>(blabla)`. Le ? spécifie que la prop n'est pas required (par défaut). On peut aussi définir une interface qu'on peut mettre dans un dossier "Interface" et on le passe dans le defineProps. On ne peut pas mettre de validator ou de valeur par défaut dans cette méthode.
+
+### Les events
+
+Parfois, on souhaite passer une info d'un enfant à un parent 
+- **Emit** On peut utiliser un emit sur un event : `@click="$emit('bigger')"` - avec par exemple sur le parent un `@bigger="fontSize++"`
+- En général, on met les emits à part dans un defineEmits() (comme defineProps) - Ce qui permet d'ajouter aussi un validator et des arguments. 
+- Un événement custom, contrairement aux évenements natifs ne se propage qu'au parent direct.
+
+### Cycle de vie
+
+![Cycle de vie d'un composant](./img/cyclevie.png)
+
 ## Lexique
 
 - **SPA** : Single page application 
