@@ -87,6 +87,26 @@ Parfois, on souhaite passer une info d'un enfant à un parent
 
 ![Cycle de vie d'un composant](./img/cyclevie.png)
 
+### Fonctionnalités avancées des composants
+
+- **v-model** peut s'utiliser sur un composant directement : `<Component v-model="content />` cela équivaut à un binding `<Component :modelValue="content @update:modelValue="content = $event" />`. Dans l'enfant, il suffit ensuite de lier le contenu à la prop puis de lui faire emettre un event updtae:modelValue quand il change, ce qui demandera au parent de mettre à jour la valuer - en effet, l'enfant ne doit pas modifier la prop qu'il reçoit. 
+- - modelValue est la valeur par défaut, on peut la personnaliser et donc aussi mettre plusieurs v-models sur notre composant : `v-model:machin="content"`
+- - On peut de plus lier un modifier à notre v-model : `v-model:machin.modifier="content"`
+
+- **Cascade** : si je définis une class ou un event listener sur mon parent `<Composant class="container" />`, la classe sera directement appliquée à mon élément enfant tant qu'il est seul. S'il y en a plusieurs, alors Vue ne saura pas sur lequel appliquer et ne l'appliquera nul part.
+- - Pour répondre à cela, on peut utiliser sur l'élément qu'on veut `<h1 :class="$attrs.class">`
+- - Une autre manière de le récupérer est d'utilise useAttrs : `const attrs = useAttrs()` - ce qui permet de l'utilise ensuite où on veut (sans le $ du coup).
+- - On peut aussi utiliser v-bind : `v-bind="attrs"` et tous les attribus seront mis sur l'élément.
+
+- **Slots** : est ce qu'on pourrait passer carrément du HTML à notre élément enfant ? 
+- - On met un `<slot></slot>` dans l'enfant, et ça va récupérer le contenu html renseigné dans le parent
+
+- **Provide/Inject** : On a vu que pour échanger de l'information entre un parent et un enfant, on peut utiliser les props dans un sens puis les events pour la remonter dans l'autre sens. Cependant : comment faire si entre mon parent et mon enfant j'ai une multitude d'enfants qui eux n'ont pas besoin de cette information ?
+- - On utilise provide dans le parent pour mettre à disposition de tous les enfants la data
+- - Puis inject pour récupérer dans l'enfant cette data.
+
+- On peut importer no composants qui n'ont pas besoin d'être visible dès le début via **defineAsyncComponent** 
+
 ## Lexique
 
 - **SPA** : Single page application 
